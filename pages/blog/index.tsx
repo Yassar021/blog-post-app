@@ -2,6 +2,7 @@
 
 import { Flex, Layout, Menu, Pagination, theme } from "antd"
 import Head from "next/head"
+import { Card, CardAddPost, Navbar } from "../components";
 
 const { Header, Content, Footer } = Layout;
 
@@ -21,38 +22,47 @@ const Blog = () => {
         <title>blog-post-app</title>
       </Head>
       <Flex gap="middle" wrap>
-      <Layout style={{ height: '100vh', textAlign: 'center'}}>
-        <Header style={{ display: 'flex', justifyContent:'space-between', background: 'white' }}>
-          <div className="demo-logo">
-            
-          </div>
-          <Menu
-            theme="light"
-            mode="horizontal"
-            defaultSelectedKeys={['2']}
-            items={items}
-            style={{ flex: 1, minWidth: 0 }}
-          />
-        </Header>
-        <Content style={{ padding: '0 24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textAlign: 'center'}}>
-          <div
-            style={{
-              backgroundColor: 'lightblue',
-              minHeight: 280,
-              padding: 24,
-              borderRadius: borderRadiusLG,
-              marginTop: '20px',
-            }}
-          >
-            Content
-          </div>
-          <Pagination style={{justifyContent:'center'}} defaultCurrent={1} total={5} />
-        </Content>
-        <Footer style={{ textAlign: 'center', alignContent:'baseline'}}>
-          Blog Post App ©{new Date().getFullYear()} Created Ant Design
-        </Footer>
-      </Layout>
-    </Flex>
+        <Layout style={{ height: '100vh', textAlign: 'center'}}>
+          {/* <Header style={{ display: 'flex', justifyContent:'space-between', background: 'white' }}>
+            <div className="demo-logo">
+              
+            </div>
+            <Menu
+              theme="light"
+              mode="horizontal"
+              defaultSelectedKeys={['2']}
+              items={items}
+              style={{ flex: 1, minWidth: 0 }}
+            />
+          </Header> */}
+          <Navbar />
+          <CardAddPost />
+          <Content className="flex flex-col items-center justify-between text-center mx-auto p-4">
+            <div
+              className="max-w-6xl mb-2 overflow-auto scroll-smooth focus:scroll-auto flex flex-col"
+              style={{
+                backgroundColor:'transparent',
+                minHeight: '80%',
+                minWidth: '280px',
+                maxWidth: '7xl',
+                padding: 4,
+                borderRadius: borderRadiusLG,
+              }}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+              </div> 
+            </div>
+            <Pagination style={{justifyContent:'center'}} defaultCurrent={3} total={5} />
+          </Content>
+          <Footer className="py-[6px] bg-slate-400 text-white" style={{ textAlign: 'center', alignContent:'baseline'}}>
+            Blog Post App ©{new Date().getFullYear()} Ant Design
+          </Footer>
+        </Layout>
+      </Flex>
     </>
   )
 }

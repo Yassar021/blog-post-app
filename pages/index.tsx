@@ -1,10 +1,10 @@
 "use client"
 
 import React from "react"
-import { Button, Flex, Layout, Typography } from "antd"
-import Title from "antd/es/typography/Title"
+import { Flex, Layout} from "antd"
 import Head from "next/head"
-import Link from "next/link"
+import ButtonLink from "./components/Button"
+import { Input } from "./components"
 
 const Welcome = () => {
   return(
@@ -17,13 +17,12 @@ const Welcome = () => {
           <div style={{
             minWidth: '300px',
           }}>
-            <Title level={5}>Welcome to BlogSphere! 🌟</Title>
-            <Typography.Paragraph>
-              {'Dive into the ultimate space where your thoughts meet technology!'}
-            </Typography.Paragraph>
-            <Button type="primary">
-              <Link style={{textDecoration: 'none'}} href={'/blog'}>To the main page</Link>
-            </Button>
+            <h4 className="text-5xl font-semibold tracking-tight text-gray-700 sm:text-6xl">Welcome to BlogSphere! 🌟</h4>
+            <p className="my-4 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
+              Dive into the ultimate space where your thoughts meet technology!
+            </p>
+            <Input title="Access Token" />
+            <ButtonLink link={"/blog"} title={"Get in"} />
           </div>
         </Layout>
       </Flex>

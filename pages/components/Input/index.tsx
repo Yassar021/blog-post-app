@@ -1,11 +1,12 @@
 type Props = {
   title: string;
+  name: string;
 }
 
-const Input = ({title} : Props) => {
+const Input = ({title, name} : Props) => {
   return(
     <>
-      <div className="px-4 mb-2 justify-center text-center">
+      <div className="px-4 mb-4 justify-center text-center">
         <label htmlFor="text" className="block text-sm/6 font-medium text-gray-900">
           {title}
         </label>
@@ -15,7 +16,7 @@ const Input = ({title} : Props) => {
               id="token"
               name="token"
               type="text"
-              placeholder={title}
+              defaultValue={title}
               className="block min-w-0 grow py-1.5 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
             />
           </div>

@@ -17,7 +17,7 @@ const Welcome = () => {
           <div style={{
             minWidth: '300px',
           }}>
-            <h4 className="text-5xl font-semibold tracking-tight text-gray-700 sm:text-6xl">Welcome to BlogSphere! 🌟</h4>
+            <h4 className="text-4xl font-semibold tracking-tight text-gray-700 sm:text-6xl">Welcome to BlogSphere! 🌟</h4>
             <p className="my-4 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
               Dive into the ultimate space where your thoughts meet technology!
             </p>

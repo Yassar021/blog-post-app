@@ -5,26 +5,34 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import ButtonDelete from "../Button/ButtonDelete";
 import CardEditPost from "./CardEditPost";
 
-const Card = () => {
+type Props = {
+  name: string;
+  title: string;
+  body: string;
+}
+
+const Card = ({name, title, body}: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   return(
     <>
-      <div className="max-w-[450px] max-h-auto p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-[450px] max-h-auto p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <h6 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h6>
+            <h6 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{title}</h6>
         </a>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-
-        <div className="flex flex-row gap-2 justify-center">
-          <button
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-2">
+          {body}
+        </p>
+        <button
+            className="inline-flex items-center px-2 py-2 text-[12px] font-medium text-center text-blue-500 bg-transparent rounded-lg"
             type="button"
             onClick={() => setShowModal(true)}
           >
             Read more 🧾
           </button>
-          <CardEditPost />
+
+        <div className="flex flex-row gap-2 justify-center">
+          <CardEditPost body={body} title={title} name={name} />
           <ButtonDelete />
           {showModal ? (
             <>
@@ -37,7 +45,7 @@ const Card = () => {
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <h3 className="text-3xl font-semibold">
-                      Modal Title
+                      Detail Post
                     </h3>
                     <button
                       className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -54,14 +62,10 @@ const Card = () => {
                       Name : Blalala
                     </p>
                     <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                      Title : Blalala
+                      Title : {title}
                     </p>
                     <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                      I always felt like I could do anything. That’s the main
-                      thing people are controlled by! Thoughts- their perception
-                      of themselves! They're slowed down by their perception of
-                      themselves. If you're taught you can’t do anything, you
-                      won’t do anything. I was taught I could do everything.
+                      description : {body}
                     </p>
                   </div>
                   {/*footer*/}

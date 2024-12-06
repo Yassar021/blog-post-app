@@ -5,7 +5,13 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import Input from "../Input";
 import TextArea from "../Input/TextArea";
 
-const CardEditPost = () => {
+type Props = {
+  name: string;
+  title: string;
+  body: string;
+}
+
+const CardEditPost = ({name, title, body}: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   return(
@@ -41,9 +47,9 @@ const CardEditPost = () => {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto text-center">
-                  <Input title="Name" />
-                  <Input title="Title" />
-                  <TextArea />
+                  <Input name={name} title={title} />
+                  <Input name={name} title={title} />
+                  <TextArea body={body} />
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

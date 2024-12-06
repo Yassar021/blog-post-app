@@ -2,9 +2,32 @@
 
 import { useState } from "react"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deletePost } from "@/server/users";
 
-const ButtonDelete = () => {
+type Props = {
+  token: string | null;
+  postId: number;
+}
+
+const ButtonDelete = ({postId, token} : Props) => {
   const [showModal, setShowModal] = useState(false);
+  const queryClient = useQueryClient();
+  const {mutate} = useMutation({
+    mutationFn: () => deletePost({postId, token}),
+    onError: (err) => {
+      alert(err);
+    },
+    onSuccess: () => {
+      setShowModal(false);
+      queryClient.invalidateQueries({ queryKey: ['post'] })     
+      alert("success delete post");
+    },
+  })
+
+  const handleDelete = () => {
+    mutate();
+  }
 
   return(
     <>
@@ -41,7 +64,7 @@ const ButtonDelete = () => {
                   <button
                     className="bg-red-500 text-white active:bg-red-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleDelete}
                   >
                     Delete
                   </button>

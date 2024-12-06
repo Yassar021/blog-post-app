@@ -1,9 +1,12 @@
+import { ChangeEventHandler } from "react";
+
 type Props = {
   title: string;
-  name: string;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Input = ({title, name} : Props) => {
+const Input = ({title, value, onChange} : Props) => {
   return(
     <>
       <div className="px-4 mb-4 justify-center text-center">
@@ -16,7 +19,9 @@ const Input = ({title, name} : Props) => {
               id="token"
               name="token"
               type="text"
-              defaultValue={title}
+              defaultValue={value}
+              value={value}
+              onChange={onChange}
               className="block min-w-0 grow py-1.5 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
             />
           </div>

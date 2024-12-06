@@ -4,16 +4,40 @@ import { useState } from "react"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import Input from "../Input";
 import TextArea from "../Input/TextArea";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { editPost } from "@/server/users";
+import { Button } from "antd";
 
 type Props = {
-  name: string;
   title: string;
   body: string;
+  postId: number;
+  token: string | null;
 }
 
-const CardEditPost = ({name, title, body}: Props) => {
+const CardEditPost = ({ title, body, postId, token}: Props) => {
   const [showModal, setShowModal] = useState(false);
+  const [newBody, setBody] = useState({body, title});
+  const [isLoading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
+  const {mutate} = useMutation({
+    mutationFn: () => editPost({token, body: newBody, postId}),
+    onError: (err) => {
+      alert(err);
+      setLoading(false);
+    },
+    onSuccess: () => {
+      setShowModal(false);
+      queryClient.invalidateQueries({ queryKey: ['post'] })  
+      alert("sucess to edit data")
+      setLoading(false);
+    }
+  });
 
+  const handleEdit = () => {
+    setLoading(true);
+    mutate();
+  }
   return(
     <>
         <button
@@ -47,26 +71,24 @@ const CardEditPost = ({name, title, body}: Props) => {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto text-center">
-                  <Input name={name} title={title} />
-                  <Input name={name} title={title} />
-                  <TextArea body={body} />
+                  <Input value={newBody.title} onChange={(e) => setBody({...newBody, title: e.target.value})} title="Title" />
+                  <TextArea value={newBody.body} onChange={(e) => setBody({...newBody, body: e.target.value})} />
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                  <button
+                  <Button
                     className="bg-red-500 text-white active:bg-red-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Cancel
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     className="bg-blue-500 text-white active:bg-blue-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleEdit}
+                    loading={isLoading}
                   >
                     Save
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

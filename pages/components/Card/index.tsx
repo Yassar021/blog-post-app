@@ -6,12 +6,13 @@ import ButtonDelete from "../Button/ButtonDelete";
 import CardEditPost from "./CardEditPost";
 
 type Props = {
-  name: string;
   title: string;
   body: string;
+  token: string | null;
+  postId: number;
 }
 
-const Card = ({name, title, body}: Props) => {
+const Card = ({title, body, token, postId}: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   return(
@@ -32,8 +33,8 @@ const Card = ({name, title, body}: Props) => {
           </button>
 
         <div className="flex flex-row gap-2 justify-center">
-          <CardEditPost body={body} title={title} name={name} />
-          <ButtonDelete />
+          <CardEditPost postId={postId} token={token} body={body} title={title} />
+          <ButtonDelete postId={postId} token={token} />
           {showModal ? (
             <>
             <div
@@ -59,7 +60,7 @@ const Card = ({name, title, body}: Props) => {
                   {/*body*/}
                   <div className="relative p-6 flex-auto">
                     <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                      Name : Blalala
+                      id : {postId}
                     </p>
                     <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
                       Title : {title}

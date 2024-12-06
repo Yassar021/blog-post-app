@@ -4,9 +4,39 @@ import { useState } from "react"
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import Input from "../Input";
 import TextArea from "../Input/TextArea";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createPost } from "@/server/users";
+import { Button } from "antd";
 
-const CardAddPost = () => {
+type Props = {
+  token: string | null;
+  userId: string | null;
+}
+
+const CardAddPost = ({ token, userId } : Props) => {
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [title, setTitle] = useState("");
+  const queryClient = useQueryClient();
+  const [description, setDescription] = useState("");
+  const {mutate} = useMutation({
+    mutationFn: () => createPost({userId, token, body: {body:description, title}}),
+    onError: (err) => {
+      alert(err);
+      setLoading(false);
+    },
+    onSuccess: () => {
+      setShowModal(false);
+      queryClient.invalidateQueries({ queryKey: ['post'] })  
+      alert("sucess make a post");
+      setLoading(false);
+    }
+  });
+
+  const handleSave = () => {
+    setLoading(true);
+    mutate();
+  }
 
   return(
     <>
@@ -46,26 +76,24 @@ const CardAddPost = () => {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto text-center">
-                  <Input title="Name" />
-                  <Input title="Title" />
-                  <TextArea />
+                  <Input onChange={(e) => setTitle(e.target.value)} value={title} title="Title" />
+                  <TextArea onChange={(e) => setDescription(e.target.value)} value={description} />
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                  <button
+                  <Button
                     className="bg-red-500 text-white active:bg-red-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Cancel
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     className="bg-blue-500 text-white active:bg-blue-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
+                    loading={isLoading}
+                    onClick={handleSave}
                   >
                     Save
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

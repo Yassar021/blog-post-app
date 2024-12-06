@@ -1,40 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog Post App 🚀
 
-## Getting Started
+The Blog Post App is a modern web application that allows users to explore, interact with, and manage public blog data through a sleek and user-friendly interface. Built with the latest web development tools and practices, this project demonstrates efficient coding principles and robust application architecture.
 
-First, run the development server:
+## 🌍 Live Demo
+
+Access the deployed application here:
+👉 Blog Post App on Vercel
+
+## 📝 Features
+
+- Browse Blogs: View posts from public APIs with clean and responsive UI.
+- Search & Filter: Quickly find relevant blog posts.
+- API Integration: Data fetched in real-time from GoRest API
+- Optimized Performance: Built with server-side rendering (SSR) and client-side fetching.
+- Theming & Design: Styled with Tailwind CSS and Ant Design components.
+- Deployed on Vercel: Experience a fast and reliable deployment.
+
+## 🛠️ Stack Requirements
+
+#### Prerequisites
+
+Make sure the following tools are installed on your machine:
+
+- Node.js v16.20.2 or higher
+- npm v8.19.4 or higher
+
+#### Tools and Libraries Used
+
+- Framework: Next.js v13 (Page Router)
+- Language: TypeScript
+- Data Fetching: Axios & TanStack Query v5
+- Styling: Tailwind CSS v3 & Ant Design v5
+- API: GoRest API
+
+## ⚙️ Installation and Setup
+
+Follow these steps to run the project locally:
+
+1. Clone the Repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/Yassar021/blog-post-app.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the Project Directory:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd blog-post-app
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Install Dependencies::
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Start the Development Server:
 
-## Learn More
+```bash
+  npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. Open the App:
+   Visit http://localhost:3000 in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌟 Acknowledgments
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Thanks to [GoRest](https://gorest.co.in/) for providing the API.
+- Inspired by modern web development practices.

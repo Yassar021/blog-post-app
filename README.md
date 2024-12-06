@@ -5,7 +5,7 @@ The Blog Post App is a modern web application that allows users to explore, inte
 ## 🌍 Live Demo
 
 Access the deployed application here:
-👉 Blog Post App on Vercel
+👉 Blog Post App on [Vercel](https://blog-post-app-beta.vercel.app/)
 
 ## 📝 Features
 
@@ -15,6 +15,31 @@ Access the deployed application here:
 - Optimized Performance: Built with server-side rendering (SSR) and client-side fetching.
 - Theming & Design: Styled with Tailwind CSS and Ant Design components.
 - Deployed on Vercel: Experience a fast and reliable deployment.
+
+## 🔑 How to Use the App
+
+#### Step 1: Get Your GoRest Access Token
+
+1. Go to the [GoRest](https://gorest.co.in/) website.
+2. Register for a free account or log in.
+3. Navigate to Access Token (under your account settings) and generate a new token.
+4. Copy the token to use in the app.
+
+#### Step 2: Login to the Blog Post App
+
+1. Visit the [Live Demo](https://blog-post-app-beta.vercel.app/).
+2. You will be presented with a Login Page.
+3. Enter the following details:
+
+- Name: Your name (e.g., John Doe).
+- Email: Your email address.
+- Access Token: Paste the token you copied from the GoRest API.
+
+4. Click the Login button to proceed.
+5. After successful login:
+
+- You will be redirected to the Blog Dashboard.
+- You can now browse and interact with public blog data!
 
 ## 🛠️ Stack Requirements
 

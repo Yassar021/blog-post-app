@@ -39,6 +39,7 @@ const nextConfig = {
     "rc-util",
   ],
   reactStrictMode: true,
+  pageExtensions: ['pages/components/Button/ButtonTypes.ts', 'pages/components/index.tsx'],
 }
 
 module.exports = nextConfig

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from "react"
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deletePost } from "@/server/users";
 

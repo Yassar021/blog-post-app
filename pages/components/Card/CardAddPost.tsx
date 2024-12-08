@@ -31,7 +31,9 @@ const CardAddPost = ({ token, userId } : Props) => {
       queryClient.invalidateQueries({ queryKey: ['post'] })  
       alert("sucess make a post");
       setLoading(false);
-    }
+      setTitle("");
+      setDescription("");
+    } 
   });
 
   // handle save post after press button save

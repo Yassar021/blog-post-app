@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from "react"
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import Input from "../Input";
 import TextArea from "../Input/TextArea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -20,6 +19,8 @@ const CardEditPost = ({ title, body, postId, token}: Props) => {
   const [newBody, setBody] = useState({body, title});
   const [isLoading, setLoading] = useState(false);
   const queryClient = useQueryClient();
+
+  // logic edit data with tanstack
   const {mutate} = useMutation({
     mutationFn: () => editPost({token, body: newBody, postId}),
     onError: (err) => {
@@ -34,6 +35,7 @@ const CardEditPost = ({ title, body, postId, token}: Props) => {
     }
   });
 
+  // handle edit post data after press button save
   const handleEdit = () => {
     setLoading(true);
     mutate();

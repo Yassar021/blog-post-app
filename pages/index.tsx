@@ -14,6 +14,8 @@ const Welcome = () => {
   const router = useRouter();
   const [token, setToken] = useState("");
   const [isLoading, setLoading] = useState(false);
+  
+  // logic auth
   const {mutate} = useMutation({
     mutationFn: () => login({user: name,token, email: email}), 
     onError: (er) => {
@@ -25,6 +27,7 @@ const Welcome = () => {
     }
    })
   
+  //  handle login after getIn button
   const handleOnClick = async () => {
     setLoading(true);
     mutate(); 
@@ -44,6 +47,7 @@ const Welcome = () => {
             <p className="my-4 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
               Dive into the ultimate space where your thoughts meet technology!
             </p>
+            {/* form login */}
             <Input value={name} onChange={(e) => setName(e.target.value)} title="Name" />
             <Input value={email} onChange={(e) => setEmail(e.target.value)} title="Email" />
             <Input value={token} onChange={(e) => setToken(e.target.value)} title="Access Token" />

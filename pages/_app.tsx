@@ -5,6 +5,7 @@ import 'tailwindcss/tailwind.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return(
+    // add tanstack provider
     <TanstackProvider >
       <Component {...pageProps} />
     </TanstackProvider>

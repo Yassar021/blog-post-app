@@ -12,6 +12,8 @@ type Props = {
 const ButtonDelete = ({postId, token} : Props) => {
   const [showModal, setShowModal] = useState(false);
   const queryClient = useQueryClient();
+
+  // logic delete a post with tanstack
   const {mutate} = useMutation({
     mutationFn: () => deletePost({postId, token}),
     onError: (err) => {
@@ -24,6 +26,7 @@ const ButtonDelete = ({postId, token} : Props) => {
     },
   })
 
+  // handle delete after press button delete
   const handleDelete = () => {
     mutate();
   }

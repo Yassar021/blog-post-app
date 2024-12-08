@@ -16,7 +16,7 @@ const Blog = () => {
   const userId = params.get('id');
   const token = params.get('token');
 
-  // call data
+  // call post data
   const query = useQuery({ queryKey:["post", page, userId, token], queryFn: () => getPost({
     page, 
     per_page:4, 
@@ -24,7 +24,7 @@ const Blog = () => {
     userId: userId,
   })})
 
-  // loading data
+  // spinner loading data
   if(query.isLoading) return(
     <div className="flex w-full h-[100vh] text-center justify-center" style={{ alignItems:'center'}} role='status' aria-label='loading'>
       <svg className='w-10 h-10 stroke-indigo-600 animate-spin' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -47,7 +47,9 @@ const Blog = () => {
       </Head>
       <Flex gap="middle" wrap>
         <Layout style={{ height: '100vh', textAlign: 'center'}}>
+          {/* navbar */}
           <Navbar />
+          {/* Add Post */}
           <CardAddPost token={token} userId={userId} />
           <Content className="flex flex-col items-center justify-between text-center mx-auto p-2">
             <div
@@ -61,6 +63,7 @@ const Blog = () => {
               }}
             >
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {/* result fetch post data */}
                 {query.data?.map((post: any) => (
                   <>
                     <Card postId={post?.id} token={token} key={post?.id} title={post?.title} body={post?.body}/>

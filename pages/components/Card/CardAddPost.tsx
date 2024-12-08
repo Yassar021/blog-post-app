@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from "react"
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import Input from "../Input";
 import TextArea from "../Input/TextArea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -19,6 +18,8 @@ const CardAddPost = ({ token, userId } : Props) => {
   const [title, setTitle] = useState("");
   const queryClient = useQueryClient();
   const [description, setDescription] = useState("");
+
+  // logic create a post
   const {mutate} = useMutation({
     mutationFn: () => createPost({userId, token, body: {body:description, title}}),
     onError: (err) => {
@@ -33,6 +34,7 @@ const CardAddPost = ({ token, userId } : Props) => {
     }
   });
 
+  // handle save post after press button save
   const handleSave = () => {
     setLoading(true);
     mutate();
